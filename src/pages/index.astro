@@ -52,57 +52,725 @@ import Layout from '../components/layout.astro';
   description="This is a small site to show the most powerful features of Netlify quickly!"
   home
 >
-  <main class="steps">
-    <section class="step">
-      <h2 class="stepHeading">Deploy Previews</h2>
-      <p>
-        Every pull request is automatically built in an
-        identical-to-production environment for
-        <strong>painless QA, feedback, and review.</strong>
-      </p>
-      <a href="/deploy-previews" class="button">
-        Learn more <span class="sr-only">about Deploy Previews</span>
-      </a>
-    </section>
+<media-misleads></media-misleads>
+<script>
+class MediaMisleads extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+<style>
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
 
-    <section class="step">
-      <h2 class="stepHeading">Instant Rollbacks</h2>
-      <p>
-        Confidently ship to production with the knowledge that it’s a
-        one-click operation to roll back to a previous version of the site.
-        <strong>Instant disaster recovery!</strong>
-      </p>
-      <a href="/instant-rollbacks" class="button">
-        Learn more
-        <span class="sr-only">about Instant Rollbacks</span>
-      </a>
-    </section>
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
 
-    <section class="step">
-      <h2 class="stepHeading">Netlify Functions</h2>
-      <p>
-        <strong>Serverless functions are superpowers for web developers!</strong>
-        Securely handle server-like requirements at any scale with no
-        provisioning, scaling, or ops overhead.
-      </p>
-      <a href="/functions" class="button">
-      Learn more
-      <span class="sr-only">about Netlify Functions</span>
-      </a>
-    </section>
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
 
-    <section class="step">
-      <h2 class="stepHeading">Netlify Forms</h2>
-      <p>
-        Handle user input with a single line of code. Netlify Forms allow
-        any HTML form to
-        <strong>
-            accept submissions, send notification emails, and trigger custom events.
-        </strong>
-      </p>
-      <a href="/netlify-forms" class="button">
-        Learn more <span class="sr-only">about Netlify Forms</span>
-      </a>
-    </section>
-  </main>
+article {
+  width: 70%;
+  content-align: center;
+  margin-left: 180px;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+</style>
+<article id="c9b58f7c-4021-4673-973a-c7d0e83eace7" class="page sans"><header>
+
+<center><img style="width: 100%" src="https://i.postimg.cc/0jR9HW0J/MMPPNG.png" alt="Media Misleads"></center>
+
+<p class="page-description"></p></header><div class="page-body"><p id="07e61d6e-db2c-4809-afa7-97919c0a0ae1" class="">
+</p><p id="9ec69352-9f4b-4ac3-9b16-6ec7d6f2fb45" class="">I often encounter people who are overwhelmed in terms of evaluating and consuming information in this era of high political tensions, unlimited potential sources, and the vast evolution of the media landscape. How can we identify what I like to call 'good faith' actors or reporters? 'Good faith' would mean simply that the entity reporting or providing the information isn't entirely motivated by the information being interpreted within their narrow viewpoint. It means they are not intentionally taking liberties with the accuracy or integrity of the info for the purpose of driving a narrative. </p><p id="9ae0f1d4-113a-4954-bb8b-772057dc4433" class="">Generally, 'good faith' is the ability to see all the way around an idea and being more motivated by journalistic accuracy than journalistic activism.  In almost all forms of media reporting we inevitably have to take reporting at faith, meaning we have no way to personally verify what's being said. If we have to take them at faith then in an ideal situation they would be reporting and practicing journalism in good faith. In good faith in this context means their goal as a journalist is optimizing truth and to provide information that is as accurate as possible. </p><p id="c789c8d8-9e59-4226-8178-d6d96e675a6c" class="">Problems arise once the motivation shifts from the desire to report the events and facts as factually and unopinionated as possible to a journalistic desire that is similar to an activist where the motivation behind reporting is the desire to have the reader reach specific conclusion, the same one which informs the journalists perspective. The reporting becomes less an unemotional description of what and how events occurred and more a narrative-driven interpretation of the meaning derived from the events. The application or meaning to anything in life is a function of interpretation through our unique perspectives. It is insulting honestly and rude for someone else to saturate a story in context that implies a specific meaning. It's insulting because the reason they do it is because they believe their formed views or opinions are RIGHT or CORRECT and they don’t trust you to come to the same conclusions on your own.  Realistically views and opinions are in fact SUBJECTIVE matters. </p><p id="b30146d5-c00a-47ba-87df-53974363e7fd" class="">There's certainly nothing wrong with opinion pieces, especially when prefaced as such or providing a subjective perspective on something to an audience when it's clear that's what's being provided -  I would consider this entertainment media. The problem I have is entertainment platforms which try to give the appearance of providing classical journalistic news, which historically has been more trustworthy due to a track record of accuracy and objectivity, and then inject narrative, bias and general subjectivity under the guise that it's objective.</p><p id="342dd377-6fd6-4d68-8260-9b7d1d9414b0" class="">How can you tell?</p><ul id="ea9da840-96ab-450a-8152-d30c6355bdbb" class="bulleted-list"><li style="list-style-type:disc">How balanced is the journalist or platform in terms of the scope of all reporting done?</li></ul><ul id="ed24e73a-8689-4f09-976b-6bb6008e35f8" class="bulleted-list"><li style="list-style-type:disc">How balanced is the journalist or platform in terms of the language used in its reporting?</li></ul><ul id="e56713e8-835d-4e08-8f4c-f00f1341204d" class="bulleted-list"><li style="list-style-type:disc">How balanced is the journalist or platform in terms of its opinion to facts ratio?</li></ul><ul id="d9332159-e53f-48d8-bbd6-e9617f9e09ad" class="bulleted-list"><li style="list-style-type:disc">Is there a skew towards subjective conclusions? Conveying emotion or using emotionally charged language?</li></ul><ul id="950679c0-2fa8-45a5-a406-98d94856bff3" class="bulleted-list"><li style="list-style-type:disc">Do they explore ideas in a meandering grey area or do ideas often seem black and white?</li></ul><ul id="2217079b-a250-4875-8f1e-8fc46b6b5226" class="bulleted-list"><li style="list-style-type:disc">Notice the difference between black and white, and a tendency to use the same blacks and whites and thoroughly exploring both the black and the white on any given idea or subject. The latter is more indicative of good faith reporting seeking to optimize accuracy because they are willing to explore both sides of an idea equally, in a way that masks their true proclivity. The less you are aware of what a reporter truly believes, likely the more objective they are. If you already have an idea of a reporter's leanings even before reading a report, it's likely they have a subjective tendency.</li></ul><ul id="333cf155-71da-4be2-a4bf-763aab991ade" class="bulleted-list"><li style="list-style-type:disc">Try to identify a writer's intention. Do you notice an emotional state arising or being evoked? Is that clearly the intention? And why? Or does no particular intention outside of being informative become apparent? What kind of intention do you desire from the entities that are curating and providing the information you consume? In my experience (notice the explicit distinction of subjective/anecdotal experience) consuming media through these filters has led me to develop a stronger judgment of character and a greater ability to properly contextualize information. The source and the source's intent or motive in providing the information matter greatly. Do you want your information to come from a source who wants you to believe something particular (what they believe) or a source who has no concern as to what you believe? Why? Is one more inherently trustworthy than the other?</li></ul><p id="a701b70d-4aaa-4a92-9404-2cc2e4c8a0ff" class="">
+</p><p id="3dff57b2-579d-4e1c-a2c9-3046760e8ff4" class="">Exhibit A:</p><figure id="73682f87-02e6-4a2b-ac29-05668031377f" class="image"><a href="https://i.postimg.cc/N0qVHZ4S/Misleads1.png"><img style="width:60%" src="https://i.postimg.cc/N0qVHZ4S/Misleads1.png"></a></figure><p id="81d3e85d-c6f7-4e2e-be6e-ea5f96e4c5bb" class="">
+</p><p id="b3887560-a0fc-4e56-b16b-499998b768dc" class="">This screenshot of a list of headlines from recently published articles provides a lot of perspective. The reason being, just by the headlines themselves, there is a large amount of skew, or imbalance, immediately apparent. From the headlines, it should be safe to assume that this is a small sample of the platform's total coverage, but it’s a sample that is recent and has been specifically curated by them, so it’s relatively high in relevance. Almost every article skews towards not just being critical of a particular side of the political spectrum, but portraying them in a negative, malicious, or even hateful manner. This is indicative of the highly divisive, emotional, and sensationalized language - which is also indicative of a skew towards subjective language. Obviously, exploring more content and actually reading some articles is in order before cementing any judgment, but off the bat, this appears to skew harder than almost any other source that I’m aware of.</p><p id="9ba36d8b-01e8-4966-87da-cd6bbc663869" class="">
+Ask yourself, what are the implications on the information itself that you are consuming if </p><p id="8e9b4db0-0b28-41f8-8be2-936d1154e70d" class="">1. it’s politically based info and </p><p id="fba178da-4867-46fc-ae4a-d79d9f1f29b1" class="">2. the source has displayed an overwhelming bias in reporting. </p><p id="d81517b6-4fc6-4218-81d4-f3d1567c7811" class="">Do they legitimately never see any noteworthy reasons to be critical of the other side, or do they intentionally not report them if and when they do see them? It has to be one or the other. </p><p id="202a466d-47d7-4275-9b00-a7f280e91a94" class="">How is this establishing good faith?</p><p id="ea91366f-06cf-4d4d-b7bc-6a383118f5ae" class="">
+</p><p id="20d3aaf4-0b34-483a-a26e-54c6c4436f0b" class="">As far as I can tell Media Matters articles all follow roughly the same template… </p><figure id="6d0883b8-08f0-4590-b645-86dd04f41609" class="image"><a href="https://i.postimg.cc/gkfX3K61/MM2.png"><img style="width:60%" src="https://i.postimg.cc/gkfX3K61/MM2.png"></a></figure><p id="3ee4e02d-c58d-48ec-a0a0-e6194f2c2946" class="">
+</p><p id="ee20f1cf-f754-471a-aaa8-260ba7083fa3" class="">Name a prominent public figure and use politically charged rhetoric and buzzwords to label them as right wing or far right and make claims that the person is actively engaging in or perpetuating hateful identity based content or behaviors.</p><figure id="1c5e4cb7-b542-4a27-85a5-52c888c117b3" class="image"><a href="https://i.postimg.cc/PrH4sZyG/MM3.png"><img style="width:60%" src="https://i.postimg.cc/PrH4sZyG/MM3.png"></a></figure><p id="500fd710-9a29-41ed-8ab8-6dd234a9bbb0" class="">These sensational headlines, designed specifically to provoke an emotional response, are rarely supported by direct evidence. A large portion of their link citations are circular, meaning they merely cite another one of their own articles. They make numerous quantitative claims and claim to conduct data-based studies, but I have yet to see them support any of these claims with hard data, although I haven't thoroughly searched their entire body of work. The closest I've seen to source data provided to support claims made based on a study they conducted has been a graph of the results, which does not legitimately validate an actual study. Otherwise, they just claim things like "engagement with this anti-trans neo-Nazi sympathizer, So and So, has increased 43,000% since Musk took over Twitter."</p><p id="b24ee011-aa17-4aa0-9760-313f2e9d760e" class="">
+</p><figure id="c810fc4e-e6df-4238-82fb-2ecc2b9ddf31" class="image"><a href="https://i.postimg.cc/HWNfm6KJ/IMG-0503.png"><img style="width:60%" src="https://i.postimg.cc/HWNfm6KJ/IMG-0503.png"></a></figure><p id="0428fca6-ca39-4127-97a4-fa7995855eba" class="">
+</p><p id="85947c49-df74-4be5-b53a-a3b59c106562" class="">The problem here is that Media Matters really only has one extreme and very specific viewpoint that it reiterates over and over again. They want you to believe what they say is an objective fact, but they provide almost no objective evidence. Without the raw data to back this stuff up, why should I assume it's a legitimate study? At least one of these accounts was verifiably banned until the Musk takeover, and likely more than one. Furthermore, any accounts that weren't banned yet were likely heavily shadow banned, in which case all this graph indicates is a return to normal, unrestricted activity. I guess Media Matters would choose to censor any mention of the word 'groomer' and permanently ban anyone who uses it, regardless of the context. I assume that if Media Matters had their way, there wouldn't be much open discussion or expression of opinions they disagree with. If anyone has found any underlying data provided by them that I missed or if Media Matters would like to provide it, please contact us.</p><p id="51f3f4ef-c805-49ce-b205-f032470eed69" class="">The little supporting evidence they do provide to back their claims is almost always stripped of relevant context and never presented in a nuanced manner. Often it's something like a poorly worded criticism or expression of a view that isn't necessarily hateful but diverges or contradicts from Media Matters' narrow band of perspective that is intentionally decontextualized or misinterpreted and sold as devout identity-based hate expression. Keep in mind that any expression that doesn't affirm their ideology will be considered hateful. Legitimate criticisms and disagreements are hate speech in Media Matters' land.</p><p id="1cbdac08-d852-485d-8b02-1e19d9220918" class="">After following multiple circular citations for the claim levied against Musk pictured above, I finally found some of the specific instances they were referencing to back it up.</p><p id="b6fffbc9-982e-480d-8dfa-08bd500588a1" class="">
+</p><figure id="2951d283-4ba1-4ffc-aa5c-8becc1f83542" class="image"><a href="https://i.postimg.cc/KctHXmnW/IMG-0499.jpg"><img style="width:60%" src="https://i.postimg.cc/KctHXmnW/IMG-0499.jpg"></a></figure><p id="2f1fe6e8-33c8-443e-a215-687068893e0e" class="">
+</p><p id="0c636ebc-5afd-4670-9049-e74df09e1314" class="">LOL.</p><p id="a786b91a-eece-4971-bffa-72b5a0c832de" class="">In my opinion, the purpose of their website is to frame the speech of public figures they disagree with, or see as political opposition, as malicious or hateful.  </p><p id="6d80fe5a-e8dd-4801-8b29-69c5f5821dbd" class="">Instance #1 they found it appropriate to label Musk as anti trans racist and intentionally misleading by simply replying “interesting” to a graph which showed some inconsistencies in regards to actual crime statistics and how that crime is proportionally represented in the media.</p><p id="f30ee65d-60ba-4052-badd-565408a6a04d" class="">Obviously any reasonable person would agree this is a discussion that can and should be had ,especially if there is hard data to back it up, without being a racist.  Not only will Media Matters label you racist for engaging in a discussion that questions the motives of legacy media, they will literally for just asserting that you find the conversation interesting. </p><p id="1cc27d84-7aa0-42a8-87aa-58087f22bc63" class="">The second instance provided to back up all these slanderous assertions is just as ludicrous as it’s entirety is again just a single word.  They will interpret a meme literally if they need to for justification. </p><p id="1475b859-9f8f-4939-a132-f809454467e4" class="">Finally simply expressing agreement with prominent comedian Dave Chappelle's criticizing of San Francisco, which oddly they don’t have an issue with him MAKING THE ORIGINAL STATEMENT, but in agreeing to the sentiment Musk is evidently a hateful racist. </p><p id="445572bc-5c25-4be8-adc5-6ef924562905" class="">As insane as that may seem I invite you to please go browse their site for yourself and determine on your own how much it seems this may or may not have been cherry picked. </p><figure id="a36cce21-e706-4f26-a455-9f3f2c0e8674" class="image"><a href="https://i.postimg.cc/tgtsQZ4T/MMcircld.png"><img style="width:60%" src="https://i.postimg.cc/tgtsQZ4T/MMcircld.png"></a></figure><p id="23974519-0b74-4762-a60f-22658e11ae1d" class="">
+</p><p id="6d8f0fe4-1289-4eb0-965b-d1963a6eddd2" class="">Out of all that content analyzed and data collected in their “study” these are the posts they referenced as evidence.  If your only going to show two data points out of apparently thousands wouldn’t they be the strongest supporting examples out of the dataset?</p><figure id="777bbb2d-8608-4529-b2eb-763367e393b0" class="image"><a href="https://i.postimg.cc/B6zsd4Hb/IMG-0508.png"><img style="width:60%" src="https://i.postimg.cc/B6zsd4Hb/IMG-0508.png"></a></figure><p id="2dc52d35-3a6b-4e23-8868-ee4f4f142386" class="">
+</p><p id="24123b09-d599-4d32-bb75-43965eb8c20a" class="">Ultimately you be the judge.  Good faith?</p><p id="d6830336-bf6f-4690-b67a-4302c3402c51" class="">
+</p><p id="e38cecd3-b779-4d5f-bd31-f2febf9edbc3" class="">As far as I can tell this is their formula and the game plan is just rinse and repeat.  It’s incredible that this group has enough credibility to inflict real world consequences and that any name brand corporation would publicly state they made any business decisions based on information published by Media Matters.  </p><p id="856bde7c-c0fd-4c24-bd6e-3fc8d0d60abc" class="">
+</p><p id="0c318e10-c6b4-4da5-a881-29cac9bea6c8" class="">Or is something else informing their decisions?</p><p id="10423207-bc9e-4e1d-bd3b-c8592d2f4817" class="">Do these companies usually make large public displays in regards to their advertising decisions?</p><p id="61b8a4ef-b001-4411-8fb3-112378f30136" class="">
+</p><p id="dae45b38-6859-41ab-ba4d-14f322ecb34d" class="">This brings us to the article in question which apparently prompted many large name brand multi national corporations to pull their advertising from X.  It also is allegedly what prompted Musk to file a lawsuit against Media Matters. </p><p id="968ca575-9ba8-4275-b3f9-aafcccc1cd7e" class="">
+</p><figure id="1f737639-b9c6-4af3-b75d-6cb2c285acae" class="image"><a href="https://i.postimg.cc/Pr9yNczD/Yakarino.png"><img style="width:60%" src="https://i.postimg.cc/Pr9yNczD/Yakarino.png"></a></figure><p id="6aa3ef4a-c287-4cf4-b29e-9d65ce6eed32" class="">In the subheading the quote used is stripped of its context, of which you can find yourself after exploring a rabbit hole of misleading citations that eventually lead back to the article quoted.</p><p id="eef5bdec-359b-42c4-9988-9f616f5f0d16" class="">
+</p><figure id="15c63c58-98ee-4a7c-b98e-ed23151b363e" class="image"><a href="https://i.postimg.cc/bNyrkNLc/Yaka2.png"><img style="width:60%" src="https://i.postimg.cc/bNyrkNLc/Yaka2.png"></a></figure><p id="687cc2b2-afe2-48d4-995a-783c10e660a3" class="">
+</p><p id="d3809ace-f020-4e8e-8b21-0b28c8eb4720" class="">Being tolerant of “lawful but awful” content is in my opinion the appropriate approach if you desire being a platform committed to free speech.  Banning and silencing people expressing bad or questionable opinions or points of view is not an appropriate response.  The only effective and just way to combat bad speech is with better speech.  Instead of becoming indignant and outraged why don’t you try simply expressing a superior argument or idea.  Banning and silencing doesn’t change their mind, it pushes these ideas to the fringes which is the perfect breeding group for developing into true extremism.</p><p id="315b5137-39ad-4487-a4e9-4f37e79da3be" class=""><a href="https://www.mediamatters.org/twitter/musk-endorses-antisemitic-conspiracy-theory-x-has-been-placing-ads-apple-bravo-ibm-oracle">https://www.mediamatters.org/twitter/musk-endorses-antisemitic-conspiracy-theory-x-has-been-placing-ads-apple-bravo-ibm-oracle</a></p><figure id="a0f7ffe6-2841-415b-aee6-f8cd474e5945" class="image"><a href="https://i.postimg.cc/k4PX4nDH/IMG-0510-1.png"><img style="width:60%" src="https://i.postimg.cc/k4PX4nDH/IMG-0510-1.png"></a></figure><p id="907c6bb2-368c-4421-8881-36af3f5d28cb" class="">
+</p><p id="85c72853-f014-46bc-8abc-21f5cee395f8" class="">Do you think that applying these updates at the top of the article, which outline the companies that have publicly announced their ad cancellations since the article was published, speaks to their journalistic intent or motivation at all? These aren't journalists motivated by good faith reporting. These are activists, curating and manufacturing narratives for the sole and express purpose of having readers' beliefs conform to theirs in order to fulfill their political agenda. PERIOD. If you have a different interpretation, I'd love to hear it.</p><p id="e70bc69b-4f9e-4ef3-91d4-547a5af4f797" class="">The actual supporting evidence in question came in the form of some JPEGs. Are multi-billion dollar conglomerates really making business decisions, which they also make sure to announce publicly, because they believe this propaganda website generated these JPEGs in good faith? I certainly hope not. My personal opinion is a resounding no, but you are more than welcome to interpret the information as you please and form your own personal opinion. I will not attack you for doing so or libel you for disagreeing. Finally, as laughable as I find this game being played, these images are the icing on the cake. X asserts that these were the product of manipulation, not at all indicative of a genuine user experience, and were the result of deliberate actions taken to achieve these results. But honestly... these could just as easily be manufactured in mere minutes with copy, paste, and Microsoft Paint. Yet we're supposed to believe these companies take them as gospel.😂😂😂</p><figure id="fad6cc69-818f-4bb3-a9a2-122c1ae5be66" class="image"><a href="https://i.postimg.cc/FRzGYQqj/IMG-0494.png"><img style="width:60%" src="https://i.postimg.cc/FRzGYQqj/IMG-0494.png"></a></figure><figure id="8b453d4e-69d5-41d3-8cbb-e08041bc0226" class="image"><a href="https://i.postimg.cc/MGddZGs6/IMG-0493.png"><img style="width:60%" src="https://i.postimg.cc/MGddZGs6/IMG-0493.png"></a></figure><p id="9201b9c0-d16c-4e67-b4d7-82ca59a16f25" class="">
+</p><p id="f5d2c869-ebb2-40c8-8f19-ddf60e73436c" class="">X has alleged in the lawsuit against Media Matters that the organization used the following methods:</p><p id="837a7aca-5438-4ba7-9d4d-138496535a5c" class=""><strong>1. Following accounts known for extreme content:</strong> Media Matters allegedly created X accounts that followed only accounts known to produce "extreme fringe content." This ensured that these accounts would see a disproportionate amount of such content in their feeds.</p><p id="cc1c73b0-ba79-4f29-8af2-9d6054648e81" class=""><strong>2. Following accounts owned by major advertisers:</strong> Media Matters allegedly also followed accounts owned by major advertisers on X. This allowed them to identify ads appearing alongside the extreme content.</p><p id="132142b6-a392-497e-a9ea-114ee08c0cf2" class=""><strong>3. "Endlessly scrolling and refreshing":</strong> X alleges that Media Matters used bots or other automated tools to "endlessly scroll and refresh" the feeds of these accounts until they found ads appearing next to extreme content. This process could involve showing the user a large amount of extreme content in order to find a specific instance with an ad.</p><p id="31210605-c706-498b-818f-8f1c144b23fc" class=""><strong>4. Manufacturing images:</strong> X further alleges that Media Matters "manipulated" the platform's algorithms by using these specially crafted accounts to create a feed "precision-designed to produce side-by-side ad/content placements that it could screenshot." This could involve techniques like liking or interacting with specific content to influence the algorithm.</p><p id="3342561f-2d31-4163-95f2-8e777d2e06a1" class="">
+</p><p id="ef4fb630-c2a5-4570-be49-6f5f0ecd813a" class="">
+</p><p id="6cd11031-9748-40c5-b21b-0ecc0ce2f936" class="">My final thoughts and analysis of Media Matters as a greater entity that curates and publishes information for public consumption  </p><p id="326e8510-d1f7-452b-b40f-7f40e5a2c53d" class=""><strong>Lacks Balanced Reporting:</strong></p><ul id="1925e385-c162-4c4b-a2f7-5856ee0004a7" class="bulleted-list"><li style="list-style-type:disc"><strong>Selective reporting:</strong> Media Matters has been criticized for focusing on negative stories about conservative media outlets while ignoring or downplaying negative stories about liberal media outlets. A 2018 study by the Media Research Center found that Media Matters covered negative stories about Fox News at a rate of 50 to 1 compared to negative stories about CNN.</li></ul><ul id="c89cff02-bfef-4496-acee-01c9c27c7f9f" class="bulleted-list"><li style="list-style-type:disc"><strong>Misrepresentation of facts:</strong> Media Matters has been accused of misrepresenting facts and taking quotes out of context in order to support its narrative. For example, in 2012, Media Matters was forced to retract a story after it was revealed that the organization had edited a video of Rush Limbaugh to make it appear as if he was calling for violence against women.</li></ul><ul id="e8f127a4-05a6-4c03-b0c4-a5cb5a991e0a" class="bulleted-list"><li style="list-style-type:disc"><strong>Omission of relevant information:</strong> Media Matters has been criticized for omitting relevant information from its reporting in order to make its targets look bad. For example, in 2017, Media Matters published a story about a speech by then-President Donald Trump that omitted key parts of the speech that would have provided context for his remarks.</li></ul><p id="33cdec24-d61b-4060-8e51-3b579240ae29" class=""><strong>Display of Extreme Bias:</strong></p><ul id="1251bed3-779d-4e6d-ae4e-17570d8fd125" class="bulleted-list"><li style="list-style-type:disc"><strong>Lack of transparency:</strong> Media Matters does not disclose its funding sources on its website. This lack of transparency makes it difficult to assess the organization's potential biases.</li></ul><ul id="927a6db3-66c1-4f16-8a30-a4e4fdf9568f" class="bulleted-list"><li style="list-style-type:disc"><strong>Association with partisan organizations:</strong> Media Matters has been criticized for its close ties to the Democratic Party. The organization has received funding from Democratic donors and has partnered with Democratic organizations on a number of projects.</li></ul><ul id="54709b43-1d2a-4e49-bfc8-464621ed2ba2" class="bulleted-list"><li style="list-style-type:disc"><strong>Use of loaded language:</strong> Media Matters frequently uses loaded language in its reporting, which can be seen as an attempt to influence public opinion. For example, the organization often uses terms like "hate speech" and "propaganda" to describe the speech of its targets.</li></ul><p id="962b5144-3885-4ec8-85e8-6f7d8c4eeda1" class=""><strong>Propaganda, Narrative and Opinion:</strong></p><ul id="be752c11-b9cb-4616-b0bd-704ce376094d" class="bulleted-list"><li style="list-style-type:disc"><strong>Suppression of dissenting voices:</strong> Media Matters has been accused of trying to silence dissenting voices by pressuring social media platforms and other organizations to remove content that it finds objectionable. For example, in 2018, Media Matters pressured YouTube to remove a video from the channel PragerU.</li></ul><ul id="8646c0cf-f758-4181-8bd3-31b0735c756d" class="bulleted-list"><li style="list-style-type:disc"><strong>Promotion of censorship:</strong> Media Matters has advocated for the censorship of conservative media outlets. For example, in 2017, the organization called for the FCC to take action against Fox News for airing an interview with Laura Ingraham.</li></ul><ul id="2cce5b39-35f3-4675-bcf2-b66d783cf017" class="bulleted-list"><li style="list-style-type:disc"><strong>Use of bullying tactics:</strong> Media Matters has been accused of using bullying tactics to intimidate its targets. For example, in 2019, the organization launched a campaign against Tucker Carlson that included sending harassing messages to his advertisers.</li></ul><p id="93fac382-01df-431a-be10-3ea511264d8b" class=""><strong>Conclusion:</strong></p><p id="d4c9eb18-2569-4ce4-a6a0-3f27973f5d1f" class="">Media Matters is a controversial organization that has been accused of bias, selective reporting, and suppression of dissenting voices. While the organization claims to be a non-partisan watchdog group, its close ties to the Democratic Party and its use of loaded language call this claim into question. Additionally, Media Matters' history of misrepresenting facts and omitting relevant information raises concerns about its credibility as a news source.</p><p id="4c4d3505-124d-4af4-88b3-2a4c17b9a69f" class="">
+</p></div></article> `;
+    }
+
+}
+
+
+customElements.define('media-misleads', MediaMisleads);
+</script>
 </Layout>
